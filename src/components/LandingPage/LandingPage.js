@@ -7,7 +7,7 @@ const LandingPage = (props) => {
     }
     return (
         <div>
-                This is the landing Page.
+                Techiyogi landing page
             <GoogleLogin
                 clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                 buttonText="Login with Google"
