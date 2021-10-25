@@ -4,6 +4,7 @@ import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button, Col, Row
   } from 'reactstrap';
+import CreateSchedule from './CreateSchedule';
 
 class Dashboard extends Component {
 
@@ -55,6 +56,7 @@ class Dashboard extends Component {
                 <Row>
                 {cards}
                 </Row>
+                <CreateSchedule/>
                 </div>
             </div>
         )

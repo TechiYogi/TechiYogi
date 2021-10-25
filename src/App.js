@@ -7,9 +7,9 @@ import About from './About';
 function App() {
   return (
     <div className="App">
-      <LandingPage/>
-      {/* <Dashboard/> */}
-    <About />
+      {/* <LandingPage/> */}
+      <Dashboard/>
+    {/* <About /> */}
     </div>
   );
 }
