@@ -155,9 +155,9 @@ const TimerAll = (props) => {
           colors={[["#218380"]]}
           duration={remainingTime}
           initialRemainingTime={remainingTime % minuteSeconds}
-          onComplete={(totalElapsedTime) => [
-            remainingTime - totalElapsedTime > 0,
-          ]}
+          onComplete={(totalElapsedTime) => {
+            return [true,1000]
+            }}
         >
           {({ elapsedTime }) =>
             renderTime("seconds", getTimeSeconds(elapsedTime))

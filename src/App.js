@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import About from './About';
 import MoveNet from './components/Model/MoveNet';
 import ViewSession from './components/YogaSession/ViewSession';
+import Cari from './components/Dashboard/Cari';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       {/* <Dashboard/> */}
       {/* <MoveNet/> */}
     {/* <About /> */}
-    <ViewSession/>
+    {/* <ViewSession/> */}
+    <Cari />
     </div>
   );
 }
