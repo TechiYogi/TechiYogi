@@ -43,7 +43,7 @@ const Timer = (props) => {
 
   return (
     <div>
-      <div class="playpause">
+      <div className="playpause">
         <label for="playpause"
             style={{transition: '500ms all ease', }}
         >
@@ -62,9 +62,10 @@ const Timer = (props) => {
           {...timerProps}
           trailColor='#1671B2'
         //   isLinearGradient
-        //   children = {children({remainingTime})}
+        
           duration={props.time}
-          //   onComplete={() => [true, 1000]}
+            onComplete={props.nextPose}
+            
         >
           {renderTime}
           {/* {children} */}
