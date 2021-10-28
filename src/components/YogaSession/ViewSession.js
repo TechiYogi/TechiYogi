@@ -5,8 +5,8 @@ import { Button, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle, faPauseCircle } from "@fortawesome/free-solid-svg-icons";
 import Timer from "./Timer";
-import MoveNet from "../Model/MoveNet";
 import Webcam from "react-webcam";
+import Model from "./Model/Model";
 
 export class ViewSession extends Component {
   constructor(props) {
@@ -128,7 +128,7 @@ export class ViewSession extends Component {
               {...timerProps}
               key={this.state.key}
               isPlaying={play}
-              trailColor="#1671B2"
+              // trailColor="#C0F1F8"
               onComplete={this.nextPose}
             //   initialRemainingTime={Schedule[this.state.currentID-1].yoga_time}
               duration={Schedule[this.state.currentID-1].yoga_time}
@@ -138,18 +138,8 @@ export class ViewSession extends Component {
             </CountdownCircleTimer>
           </div>
         </div>
-        <div className='.col-6'
-          style={{
-            textAlign:'left', marginLeft:'1%'
-          }}
-        >
-            {/* <MoveNet/> */}
-            <Webcam
-            mirrored
-            style={{
-              width:'50%'
-            }}
-            />
+        <div>
+          <Model/>
         </div>
         <div style={{textAlign:'right', marginTop:'-2%'}} >
           <Button color="danger" >End Session</Button>
