@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Dashboard from './components/Dashboard/Dashboard';
 import About from './About';
 import ViewSession from './components/YogaSession/ViewSession';
+import Cari from './components/Dashboard/Cari';
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
       {/* <Dashboard/> */}
       {/* <MoveNet/> */}
     {/* <About /> */}
-    <ViewSession/>
+    {/* <ViewSession/> */}
+    <Cari />
     </div>
   );
 }
