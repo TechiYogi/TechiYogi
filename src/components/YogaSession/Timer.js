@@ -6,10 +6,20 @@ import { faPlayCircle, faPauseCircle } from '@fortawesome/free-solid-svg-icons'
 
 const Timer = (props) => {
   const [Play, setPlay] = useState(true);
+  const [time, settime] = useState(props.time)
 
   const pauseTimer = () => {
     setPlay(!Play);
   };
+
+  const completePose = () => {
+        // pauseTimer();
+        props.nextPose()
+        settime(props.time)
+        pauseTimer();
+        console.log(time)
+        return[true, 1000];
+  }
 
   const timerProps = {
     isPlaying: Play,
@@ -61,11 +71,8 @@ const Timer = (props) => {
         <CountdownCircleTimer
           {...timerProps}
           trailColor='#1671B2'
-        //   isLinearGradient
-        
-          duration={props.time}
-            onComplete={props.nextPose}
-            
+          onComplete={ () => completePose() }
+          duration={time}
         >
           {renderTime}
           {/* {children} */}
@@ -75,97 +82,4 @@ const Timer = (props) => {
   );
 };
 
-const TimerAll = (props) => {
-  const minuteSeconds = 60;
-  const hourSeconds = 3600;
-  const daySeconds = 86400;
-
-  const [Play, setPlay] = useState(true);
-
-  const pauseTimer = () => {
-    setPlay(false);
-  };
-
-  const timerProps = {
-    isPlaying: Play,
-    size: 120,
-    strokeWidth: 6,
-  };
-
-  const renderTime = (dimension, time) => {
-    return (
-      <div className="time-wrapper">
-        <div className="time">{time}</div>
-        <div>{dimension}</div>
-      </div>
-    );
-  };
-
-  const getTimeSeconds = (time) => (minuteSeconds - time) | 0;
-  const getTimeMinutes = (time) => ((time % hourSeconds) / minuteSeconds) | 0;
-  const getTimeHours = (time) => ((time % daySeconds) / hourSeconds) | 0;
-  const getTimeDays = (time) => (time / daySeconds) | 0;
-  const stratTime = 0; // use UNIX timestamp in seconds
-  const endTime = 90; // use UNIX timestamp in seconds
-
-  const remainingTime = endTime - stratTime;
-  const days = Math.ceil(remainingTime / daySeconds);
-  const daysDuration = days * daySeconds;
-
-  return (
-    <div>
-      <CountdownCircleTimer
-        {...timerProps}
-        colors={[["#7E2E84"]]}
-        duration={daysDuration}
-        initialRemainingTime={remainingTime}
-      >
-        {({ elapsedTime }) =>
-          renderTime("days", getTimeDays(daysDuration - elapsedTime))
-        }
-      </CountdownCircleTimer>
-      <CountdownCircleTimer
-        {...timerProps}
-        colors={[["#D14081"]]}
-        duration={daySeconds}
-        initialRemainingTime={remainingTime % daySeconds}
-        onComplete={(totalElapsedTime) => [
-          remainingTime - totalElapsedTime > hourSeconds,
-        ]}
-      >
-        {({ elapsedTime }) =>
-          renderTime("hours", getTimeHours(daySeconds - elapsedTime))
-        }
-      </CountdownCircleTimer>
-      <Row>
-        <CountdownCircleTimer
-          {...timerProps}
-          colors={[["#EF798A"]]}
-          duration={hourSeconds}
-          initialRemainingTime={remainingTime % hourSeconds}
-          onComplete={(totalElapsedTime) => [
-            remainingTime - totalElapsedTime > minuteSeconds,
-          ]}
-        >
-          {({ elapsedTime }) =>
-            renderTime("minutes", getTimeMinutes(elapsedTime))
-          }
-        </CountdownCircleTimer>
-        <CountdownCircleTimer
-          {...timerProps}
-          colors={[["#218380"]]}
-          duration={remainingTime}
-          initialRemainingTime={remainingTime % minuteSeconds}
-          onComplete={(totalElapsedTime) => [
-            remainingTime - totalElapsedTime > 0,
-          ]}
-        >
-          {({ elapsedTime }) =>
-            renderTime("seconds", getTimeSeconds(elapsedTime))
-          }
-        </CountdownCircleTimer>
-      </Row>
-    </div>
-  );
-};
 export default Timer;
