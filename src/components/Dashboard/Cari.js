@@ -126,10 +126,10 @@ import { UncontrolledCollapse, Button, CardBody, Card } from 'reactstrap';
 
 const Colap = (props) => (
     <div>
-      <Button color="primary" id="toggler" style={{ marginBottom: '1rem' }}>
-        Toggle
+      <Button color="primary" id={props.name + props.id} style={{ marginBottom: '1rem' }}>
+      {`#${props.name + props.id}`}
       </Button>
-      <UncontrolledCollapse toggler="#toggler">
+      <UncontrolledCollapse toggler={`#${props.name + props.id}`}>
         <Card>
           <CardBody>
               {props.data}
@@ -205,8 +205,15 @@ const Cari = (props) => {
       <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
     </Carousel>
         </div>
-        <div>
-            <Colap data={items[activeIndex].caption} />
+        <div className="row">
+          <div className="col-md-6">
+          <Colap data={items[activeIndex].caption} id={activeIndex} text="Benefits" name="bene" id={activeIndex}  />
+            
+          </div> 
+          <div className="col-md-6">
+            <Colap data={items[activeIndex].altText} text="preq" name="prequ" id={activeIndex} />
+          </div> 
+            
         </div>
         </div>
   );
