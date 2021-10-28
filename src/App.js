@@ -14,8 +14,8 @@ function App() {
       {/* <Dashboard/> */}
       {/* <MoveNet/> */}
     {/* <About /> */}
-    {/* <ViewSession/> */}
-    <Cari />
+    <ViewSession/>
+    {/* <Cari /> */}
     </div>
   );
 }
