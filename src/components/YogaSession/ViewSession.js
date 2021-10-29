@@ -15,7 +15,10 @@ export class ViewSession extends Component {
     this.state = {
       currentID: 1,
       totalPoses: Schedule.length,
-      play: true,
+      play : {
+        play_btn : true,
+        play_pose: false
+      },
       key: 0,
       timerProps: {
         // isPlaying: play ,
@@ -34,10 +37,24 @@ export class ViewSession extends Component {
     this.timerchildRef = React.createRef();
   }
 
-  pauseTimer = () => {
-    this.setState({
-      play: !this.state.play,
-    });
+  changeTimerState = (Case, State=false) => {
+    var play= this.state.play
+    switch(Case){
+      case 1:{
+        play.play_btn = !play.play_btn
+        this.setState({
+          play: play
+        })
+        break;
+      }
+      case 2:{
+        play.play_pose = State
+        this.setState({
+          play: play
+        })
+      }
+      default: return;
+    }
   };
 
   renderTime = ({ remainingTime }) => {
@@ -100,7 +117,7 @@ export class ViewSession extends Component {
         >
           <div className="playpause" >
             <label for="playpause" style={{ transition: "500ms all ease" }}>
-              {play ? (
+              {play.play_pose && play.play_btn ? (
                 <FontAwesomeIcon
                   icon={faPauseCircle}
                   size="4x"
@@ -119,7 +136,8 @@ export class ViewSession extends Component {
               value="None"
               id="playpause"
               name="check"
-              onClick={() => this.pauseTimer()}
+              disabled = {!play.play_pose}
+              onClick={() => this.changeTimerState(1)}
               style={{ visibility: "hidden" }}
             />
           </div>
@@ -127,7 +145,7 @@ export class ViewSession extends Component {
             <CountdownCircleTimer
               {...timerProps}
               key={this.state.key}
-              isPlaying={play}
+              isPlaying={play.play_pose && play.play_btn}
               // trailColor="#C0F1F8"
               onComplete={this.nextPose}
             //   initialRemainingTime={Schedule[this.state.currentID-1].yoga_time}
@@ -139,7 +157,7 @@ export class ViewSession extends Component {
           </div>
         </div>
         <div>
-          <Model/>
+          <Model currentPose={Schedule[this.state.currentID-1].yoga_name} changeTimerState={(Case, State) => this.changeTimerState(Case, State)} />
         </div>
         <div style={{textAlign:'right', marginTop:'-2%'}} >
           <Button color="danger" >End Session</Button>
