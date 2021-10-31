@@ -4,8 +4,6 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Button, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle, faPauseCircle } from "@fortawesome/free-solid-svg-icons";
-import Timer from "./Timer";
-import Webcam from "react-webcam";
 import Model from "./Model/Model";
 
 export class ViewSession extends Component {
@@ -20,6 +18,7 @@ export class ViewSession extends Component {
         play_pose: false
       },
       key: 0,
+      pauseTime: -1,
       timerProps: {
         // isPlaying: play ,
         size: 120,
@@ -34,8 +33,45 @@ export class ViewSession extends Component {
     };
 
     this.nextPose = this.nextPose.bind(this);
+    this.shouldRestartTimer = this.shouldRestartTimer.bind(this);
     this.timerchildRef = React.createRef();
   }
+
+  changePauseTimeState = (Case) => {
+    var pauseTime = this.state.pauseTime
+    switch(Case){
+      case 1:{
+        if(pauseTime!=-1){
+          break;
+        }
+        else
+        {
+          var time = new Date();
+          this.setState({
+              pauseTime: time.getTime()/1000
+          })
+        }
+        break;
+      }
+      case 2: {
+        this.setState({
+          pauseTime: -1
+        })
+      }
+    }
+  }
+
+
+  shouldRestartTimer = () => {
+    var time = new Date();
+    const play = this.state.play
+   if(play.play_btn && play.play_pose == false && this.state.pauseTime!=-1 && time.getTime()/1000 - this.state.pauseTime >=5)
+    {
+      console.log('Restart Timer', time.getTime()/1000 - this.state.pauseTime)
+      this.changePauseTimeState(2)
+    }
+  }
+
 
   changeTimerState = (Case, State=false) => {
     var play= this.state.play
@@ -88,10 +124,17 @@ export class ViewSession extends Component {
     }
     // {this.timerchildRef.current.Timer(Schedule[this.state.currentID-1].yoga_time)}
   };
+  
+  componentDidMount = () => {
+    // this.shouldRestartTimer
+    setInterval(() => {
+      this.shouldRestartTimer()
+    }, 1000);
+  }
 
   render() {
     const { currentID, totalPoses, play, timerProps } = this.state;
-
+    
     return (
       <div style={{ background: "#C0F1F8" }}>
         <div style={{display:'flex', float:'right', marginTop:'1%', marginRight:'5%' }} >
@@ -157,7 +200,7 @@ export class ViewSession extends Component {
           </div>
         </div>
         <div>
-          <Model currentPose={Schedule[this.state.currentID-1].yoga_name} changeTimerState={(Case, State) => this.changeTimerState(Case, State)} />
+          <Model currentPose={Schedule[this.state.currentID-1].yoga_name} changeTimerState={(Case, State) => this.changeTimerState(Case, State)} changePauseTimeState = {(Case) => this.changePauseTimeState(Case)} />
         </div>
         <div style={{textAlign:'right', marginTop:'-2%'}} >
           <Button color="danger" >End Session</Button>

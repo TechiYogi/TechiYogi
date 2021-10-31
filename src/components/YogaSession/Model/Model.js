@@ -3,6 +3,7 @@ import Webcam from 'react-webcam'
 import * as poseDetection from '@tensorflow-models/pose-detection'
 import * as tf from '@tensorflow/tfjs'
 import { drawKeypoints, drawSkeleton } from './MoveNetUtils'
+import { isTorsoVisible } from './TorsoVisible'
 
 
 function Model(props) {
@@ -45,10 +46,12 @@ function Model(props) {
       if(yoga[maxIndex]!='Warrier')
       {
         props.changeTimerState(2, false)
+        props.changePauseTimeState(1);
 
       }
       else{
         props.changeTimerState(2, true)
+        props.changePauseTimeState(2);
       }
       // console.log(accu)
     }
@@ -77,7 +80,7 @@ function Model(props) {
             const video = webcamRef.current.video;
             const videoWidth = webcamRef.current.video.videoWidth;
             const videoHeight = webcamRef.current.video.videoHeight;
-              // console.log(webcamRef.current)
+          
             // Set video width
             webcamRef.current.video.width = videoWidth;
             webcamRef.current.video.height = videoHeight;
@@ -87,10 +90,14 @@ function Model(props) {
             const pose = await detector.estimatePoses(video);
             // console.log(pose);
             
-            if(pose && pose[0].keypoints){
+            if(pose && pose[0] && pose[0].keypoints){
               drawCanvas(pose[0], video, videoWidth, videoHeight, canvasRef);
             // console.log(processinput(pose[0]['keypoints']));
+              if(true || isTorsoVisible(pose[0].keypoints))
               predictPose(processinput(pose[0].keypoints))
+              else{
+                console.log('Full Body Not Visible')
+              }
             }
           }
 
