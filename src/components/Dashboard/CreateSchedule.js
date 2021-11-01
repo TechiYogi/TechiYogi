@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter,
         Form, FormGroup, Label, Input, FormText, Col
 } from 'reactstrap';
+import db from "../../firebase";
+import { getFirestore, getDocs } from 'firebase/firestore';
+//import { getFirestore } from "firebase/compat/firestore";
+import { collection, addDoc } from "firebase/firestore";
 
-const CreateSchedule = (props) => {
-
+const CreateSchedule = (props) => { 
+//const db = firebase.firestore();
     const {
         buttonLabel = 'Create Schedule',
         className,
@@ -12,7 +16,7 @@ const CreateSchedule = (props) => {
         yogaPose = ['chair', 'cobra', 'dog', 'tree', 'warrier']
       } = props;
       
-    const createOptions = (arr) => {
+    const createOptions = (arr) => {                         
         return(
             arr.map( (day) => {
                 return(
@@ -25,6 +29,29 @@ const CreateSchedule = (props) => {
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
+    const saveAnswer = (event) => {
+        event.preventDefault();
+    
+        const elementsArray = [...event.target.elements];
+        
+    
+        const formData = elementsArray.reduce((accumulator, currentValue) => {
+          if (currentValue.id) {
+            accumulator[currentValue.id] = currentValue.value;
+          }
+    
+          return accumulator;
+        }, {});
+
+        const values = [...elementsArray[2].selectedOptions].map(opt => opt.value);
+        formData.selectAasan=values;
+        
+    
+        //db.collection("schedule").add(formData);
+        const docRef =  addDoc(collection(db,"Schedule"),formData);
+      };
+
+    
 
     return (
         <div>
@@ -32,7 +59,7 @@ const CreateSchedule = (props) => {
         <Modal isOpen={modal} toggle={toggle} className={className}>
             <ModalHeader toggle={toggle}>Create Schedule</ModalHeader>
             <ModalBody >
-                <Form>
+                <Form onSubmit = {saveAnswer}>
                     <FormGroup row>
                         <Label for="selectDay"sm={3} >Select Day/s</Label>
                         <Col sm={6}>
