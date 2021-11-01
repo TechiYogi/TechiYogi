@@ -5,6 +5,7 @@ import { Button, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle, faPauseCircle } from "@fortawesome/free-solid-svg-icons";
 import Model from "./Model/Model";
+import PoseDemonstration from "./PoseDemonstration";
 
 export class ViewSession extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ export class ViewSession extends Component {
       },
       key: 0,
       pauseTime: -1,
+      shouldRepeat: true,
       timerProps: {
         // isPlaying: play ,
         size: 120,
@@ -112,16 +114,26 @@ export class ViewSession extends Component {
   };
 
   nextPose = () => {
-    const { currentID, totalPoses, key } = this.state;
+    const { currentID, totalPoses, key, shouldRepeat } = this.state;
     console.log("next Pose", currentID);
+
+    if(Schedule[currentID-1].both_sides==true && shouldRepeat){
+      this.setState({
+        key: key+1,
+        shouldRepeat: false
+      });
+      console.log('Repeat pose for Left Side')
+      return[true, 3000]
+    }
     
     if (currentID < totalPoses) {
       this.setState({
         key: key+1,
         currentID: currentID + 1,
+        shouldRepeat: true
       });
 
-      return[true, Schedule[this.state.currentID-1].yoga_time]
+      return[true, 3000]
     } else {
       console.log("Session Completed");
     }
@@ -202,8 +214,13 @@ export class ViewSession extends Component {
             </CountdownCircleTimer>
           </div>
         </div>
+        <div style={{display:'flex'}}>
         <div>
           <Model currentPose={Schedule[this.state.currentID-1].yoga_name} changeTimerState={(Case, State) => this.changeTimerState(Case, State)} changePauseTimeState = {(Case) => this.changePauseTimeState(Case)} />
+        </div>
+        <div style={{margin:'5%'}}>
+          <PoseDemonstration poseName={Schedule[this.state.currentID-1].yoga_name} />
+        </div>
         </div>
         <div style={{textAlign:'right', marginTop:'-2%'}} >
           <Button color="danger" >End Session</Button>
