@@ -69,6 +69,9 @@ export class ViewSession extends Component {
     {
       console.log('Restart Timer', time.getTime()/1000 - this.state.pauseTime)
       this.changePauseTimeState(2)
+      this.setState({
+        key: this.state.key +1
+      })
     }
   }
 
