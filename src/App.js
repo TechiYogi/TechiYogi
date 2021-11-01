@@ -7,6 +7,7 @@ import ViewSession from './components/YogaSession/ViewSession';
 import Cari from './components/Dashboard/Cari';
 
 
+
 function App() {
   return (
     <div className="App">
@@ -17,6 +18,7 @@ function App() {
     <ViewSession/>
     {/* <Cari /> */}
     </div>
+    
   );
 }
 

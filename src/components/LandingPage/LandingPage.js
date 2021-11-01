@@ -1,5 +1,7 @@
 import React from 'react';
+import firebase from './firebase_config';
 import GoogleLogin from 'react-google-login';
+import {getAuth,signInWithPopup,GoogleAuthProvider} from 'firebase/auth';
 import {
     Collapse,
     Navbar,
@@ -145,31 +147,59 @@ const LandingPage = (props) => {
     const responseGoogle = (response)=>{
         console.log(response.profileObj);
     }
+    // const [isUserSignedIn,setIsUserSignedIn]= useState(false);
+    // if(isUserSignedIn === false){
+    //   return(
+    //     //////s
+    //   )
+    //   }
+    //   else{
+    //     return(
+    //       <LandingPage/>
+    //     )
+    //   }
+    const SignInWithFirebase=()=>{
+      alert("hello");
+      const provider=new GoogleAuthProvider();
+      const auth=getAuth();
+      signInWithPopup(auth, provider)
+      .then((re)=>{
+        console.log(re);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+    }
     return (
         <div>
             <header>
-            <Navigation />
+              <Navigation />
             </header>
             <br />
             
-            <div className="container-fluid">
-                <div className="row">
-                        <div className="col-md-5">        
-                         <GoogleLogin
-                clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                buttonText="Login with Google"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy={'single_host_origin'}
-            /> 
-                                </div>
-                        <div className="col-md-7">
-                            <Caro />
-                        </div>
-                        </div>
-                </div>
+          <div className="container-fluid">
+              <div className="row">
+                    <div className="col-md-5">       
+                          <buttton onClick={SignInWithFirebase}>Login with Google</buttton>
+                          {/* <GoogleLogin
+                            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                            buttonText="Login with Google"
+                            onClick={SignInWithFirebase}
+                            onSuccess={responseGoogle}
+                            onFailure={responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                          />  */}
+                    
+                    </div>
+                    <div className="col-md-7">
+                              <Caro />
+                    </div>
 
-            </div>
+              </div>
+
+          </div>
+
+        </div>
 
     )
 }
