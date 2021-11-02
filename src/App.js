@@ -10,17 +10,19 @@ import Cari from './components/Dashboard/Cari';
 
 
 
+
 function App() {
   
   return (
     <div className="App">
       { <LandingPage/> }
-      { <Dashboard/> }
-      { /*<MoveNet/>*/ }
-    { <About /> }
-    { /*<ViewSession/>*/ }
-    <Cari />
+      {/* <Dashboard/> */}
+      {/* <MoveNet/> */}
+    {/* <About /> */}
+    {/*<ViewSession/>*/}
+    {/* <Cari /> */}
     </div>
+    
   );
 }
 

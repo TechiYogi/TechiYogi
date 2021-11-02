@@ -1,5 +1,6 @@
 import React from 'react';
 import {Container, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, NavLink, Nav} from 'reactstrap';
+import CreateSchedule from './CreateSchedule';
 // import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 // import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -42,7 +43,8 @@ class Header extends React.Component {
                       <NavLink href="#">Report</NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink href="#">Options</NavLink>
+                    {/* <NavLink href="#">Options</NavLink> */}
+                    <CreateSchedule/>
                   </NavItem>
                 </Nav>
                 {/* <NavbarNav right>
