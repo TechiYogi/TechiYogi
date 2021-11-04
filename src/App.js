@@ -6,6 +6,7 @@ import About from './About';
 import ViewSession from './components/YogaSession/ViewSession';
 import MoveNet from './components/YogaSession/Model/MoveNet';
 import Cari from './components/Dashboard/Cari';
+import EndSessionModal from './components/YogaSession/EndSessionModal';
 //import firebase from './firebase';
 
 
@@ -15,12 +16,13 @@ function App() {
   
   return (
     <div className="App">
-      { <LandingPage/> }
-      { <Dashboard/> }
+      {/* { <LandingPage/> } */}
+      {/* { <Dashboard/> } */}
       { /*<MoveNet/>*/ }
-    { <About /> }
-    { /*<ViewSession/>*/ }
-    <Cari />
+    {/* { <About /> } */}
+    {/* <ViewSession/> */}
+    {/* <Cari /> */}
+    <EndSessionModal/>
     </div>
     
   );
