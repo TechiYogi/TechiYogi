@@ -20,14 +20,14 @@ function EndSessionModal() {
               {
                 label: 'Yes',
                 onClick: () => {
-                    alert("Bye bye!");
+                    // alert("Bye bye!");
                     toggle();
                 }
               },
               {
                 label: 'No',
                 onClick: () =>{
-                    alert("Great! you should not compromise with your health!")
+                    // alert("Great! you should not compromise with your health!")
                 }
               }
             ]
