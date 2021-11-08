@@ -6,6 +6,7 @@ import About from './About';
 import ViewSession from './components/YogaSession/ViewSession';
 import Cari from './components/Dashboard/Cari';
 import EndSessionModal from './components/YogaSession/EndSessionModal';
+import Report from './components/Report/Report';
 
 
 function App() {
@@ -17,7 +18,9 @@ function App() {
       <Route path="/" element={<div><LandingPage/><About/></div>} />
       <Route path='/dashboard' element={<Dashboard/>}/>
       <Route path='/session' element={<ViewSession/>} />
-      <Route path='/report' element={<EndSessionModal/>} />
+      <Route path='/test' element={<EndSessionModal/>} />
+      <Route path='/report' element={<Report/>} />
+      
       </Routes> 
       </Router>
     </div>
