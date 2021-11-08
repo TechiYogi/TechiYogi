@@ -9,7 +9,8 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink } from 'reactstrap';
+    NavLink, 
+    Button} from 'reactstrap';
 
 import {
   Carousel,
@@ -182,8 +183,8 @@ const LandingPage = (props) => {
             
           <div className="container-fluid">
               <div className="row">
-                    <div className="col-md-5">       
-                          <button onClick={SignInWithFirebase}>Login with Google</button>
+                    <div className="col-md-5">
+                          <Button color='primary' onClick={SignInWithFirebase}>Login with Google </Button>    
                           {/* <GoogleLogin
                             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                             buttonText="Login with Google"
@@ -191,7 +192,7 @@ const LandingPage = (props) => {
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
                             cookiePolicy={'single_host_origin'}
-                          />  */}
+                          >  */}
                     
                     </div>
                     <div className="col-md-7">

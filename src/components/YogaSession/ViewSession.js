@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle, faPauseCircle } from "@fortawesome/free-solid-svg-icons";
 import Model from "./Model/Model";
 import PoseDemonstration from "./PoseDemonstration";
+import EndSessionModal from "./EndSessionModal";
 
 export class ViewSession extends Component {
   constructor(props) {
@@ -214,7 +215,7 @@ export class ViewSession extends Component {
             </CountdownCircleTimer>
           </div>
         </div>
-        <div style={{display:'flex'}}>
+        <div style={{}}>
         <div>
           <Model currentPose={Schedule[this.state.currentID-1].yoga_name} changeTimerState={(Case, State) => this.changeTimerState(Case, State)} changePauseTimeState = {(Case) => this.changePauseTimeState(Case)} />
         </div>
@@ -223,7 +224,7 @@ export class ViewSession extends Component {
         </div>
         </div>
         <div style={{textAlign:'right', marginTop:'-2%'}} >
-          <Button color="danger" >End Session</Button>
+          <EndSessionModal/>
         </div>
       </div>
     );
