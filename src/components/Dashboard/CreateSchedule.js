@@ -4,8 +4,9 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import db from "../../firebase";
 import { getFirestore, getDocs } from 'firebase/firestore';
-//import { getFirestore } from "firebase/compat/firestore";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc,doc,getDoc,updateDoc } from "firebase/firestore";
+import { query, where} from "firebase/firestore";
+import firebase from '../../firebase';
 
 const CreateSchedule = (props) => { 
 //const db = firebase.firestore();
@@ -29,7 +30,7 @@ const CreateSchedule = (props) => {
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
-    const saveAnswer = (event) => {
+    const saveAnswer = async (event) => {
         event.preventDefault();
     
         const elementsArray = [...event.target.elements];
@@ -45,15 +46,52 @@ const CreateSchedule = (props) => {
 
         const values = [...elementsArray[2].selectedOptions].map(opt => opt.value);
         formData.selectAasan=values;
+        var email = new Map();
+        var day = new Map();
+        var time = new Map();
+        time.set(formData.selectTime,formData.selectAasan);
+        day.set(formData.selectDay,Object.fromEntries(time));
+        email.set(localStorage.getItem('email'),Object.fromEntries(day));
+       
+        //const doccRef =  addDoc(collection(db,"schedule"),Object.fromEntries(email));
+
+        const querySnapshot = await getDocs(collection(db, "schedule"));
+        querySnapshot.forEach((doc) => {
+          
+         
+          var data = doc.data();
+          
+          const map = new Map(Object.entries(data));
+          console.log(map);
         
-    
-        //db.collection("schedule").add(formData);
-        const docRef =  addDoc(collection(db,"Schedule"),formData);
+          
+          
+          if(map.has(localStorage.getItem('email'))){
+              const map2 = new Map(Object.entries(map.values()));
+              //console.log(map2);
+            //   map2.set(formData.selectDay,Object.fromEntries(time));
+            //   map.set(localStorage.getItem('email'),Object.fromEntries(map2));
+              //console.log(map);
+              
+              //const doccRef =  addDoc(collection(db,"schedule"),Object.fromEntries(map));
+              //const map2 = new Map(Object.entries(map.values()));
+              //console.log(map2);
+          }
+        });
+      //  const doccRef =  addDoc(collection(db,"schedule"),Object.fromEntries(email));
+
+
+      
+          
+        
+        
+       
       };
 
     
 
     return (
+
         <div>
         <Button color="info" onClick={toggle}>{buttonLabel}</Button>
         <Modal isOpen={modal} toggle={toggle} className={className}>
