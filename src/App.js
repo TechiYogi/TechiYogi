@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       { <LandingPage/> }
-      {/* <Dashboard/> */}
+      { <Dashboard/> }
       {/* <MoveNet/> */}
     {/* <About /> */}
     {/*<ViewSession/>*/}
