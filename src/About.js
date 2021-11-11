@@ -31,14 +31,7 @@ function About()
                     <div className="row">
                         <animated.div style={textprop} className="col-md-5">
                             <br /> <br /><br /><br />
-                            <p>jflskdjflkdsjlkfjs
-                                ldsjflkjsdlkfjlskdf
-                                flsdkjflksdjflkjsdlkf
-                                fsldjflkdjfalkajsdlkfjlsd
-                                dlfkjsldfjlksdjfljdsf
-                                sdlfdjslkfjslkdjflksdjflsd
-                                fsdlfjlskdjflksdjlkfjsdlfsd
-                                lsdfjsldkfjldskjfllkjjjjjjjjjjjjjjjjjj</p>   
+                            <p>Techi Yogi is a platform where you can perform yoga aasan without the presence of an instructor</p>   
                         </animated.div>
                         <div className="col-md-3"></div>
                         <animated.div style={picprop} className="col-md-4">

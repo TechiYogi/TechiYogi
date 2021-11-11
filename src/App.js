@@ -5,6 +5,9 @@ import Dashboard from './components/Dashboard/Dashboard';
 import About from './About';
 import ViewSession from './components/YogaSession/ViewSession';
 import Cari from './components/Dashboard/Cari';
+import EndSessionModal from './components/YogaSession/EndSessionModal';
+import Report from './components/Report/Report';
+import CreateSchedule from './components/Dashboard/CreateSchedule';
 
 
 function App() {
@@ -13,9 +16,15 @@ function App() {
     <div className="App">
       <Router>
       <Routes>
-      <Route path="/" element={<LandingPage/>} />
+      <Route path="/" element={<div><LandingPage/><About/></div>} />
       <Route path='/dashboard' element={<Dashboard/>}/>
       <Route path='/session' element={<ViewSession/>} />
+      <Route path='/test' element={
+      // <EndSessionModal/>
+      <CreateSchedule/>
+      } />
+      <Route path='/report' element={<Report/>} />
+      
       </Routes> 
       </Router>
     </div>
