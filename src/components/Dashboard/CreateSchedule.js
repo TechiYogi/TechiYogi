@@ -31,6 +31,8 @@ const CreateSchedule = (props) => {
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
+
+
     const saveAnswer = async (event) => {
         event.preventDefault();
 
@@ -53,19 +55,13 @@ const CreateSchedule = (props) => {
         time.set(formData.selectTime, formData.selectAasan);
         day.set(formData.selectDay, Object.fromEntries(time));
         email.set(localStorage.getItem('email'), Object.fromEntries(day));
-        
-        
-         var f=false
-         
-         const querySnapshot = await getDocs(collection(db, "schedule"));
-         querySnapshot.forEach((res) => {
+    
 
-
-            var data = res.data();
-
-            if (data[localStorage.getItem('email')]) {
-                f=true
-                const scheduleRef = doc(db, "schedule", res.id);
+            const docRef = doc(db, "Schedule", localStorage.getItem('email'));
+            const docSnap = await getDoc(docRef);
+            console.log(docSnap.exists())
+            if (docSnap.exists()) {
+                var data = docSnap.data();
                 var c = localStorage.getItem('email')
                 let schedule = data[localStorage.getItem('email')]
                 
@@ -84,15 +80,15 @@ const CreateSchedule = (props) => {
                 const d = {
                     [c] : schedule
                 }
-                setDoc(scheduleRef,d);
+                setDoc(docRef,d);
                 
             }
-           
-
-         });
-         if(!f){
-            const doccRef =  addDoc(collection(db,"schedule"),Object.fromEntries(email));
-         }
+            else{
+                await setDoc(doc(db, "Schedule", localStorage.getItem('email')), {
+                    [localStorage.getItem('email')]:Object.fromEntries(day)
+                  });
+            }
+        
     };
 
    
