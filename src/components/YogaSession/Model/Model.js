@@ -27,7 +27,7 @@ function Model(props) {
   
     //   ]]
     //   console.log('aaaa', a)
-    //   return [output];
+      return [output];
     }
     
     const predictPose = async (pose) =>{
@@ -49,6 +49,9 @@ function Model(props) {
       }
      setPose(maxIndex);
       setaccu(res[maxIndex]);
+      // setInterval(() => {
+        props.addScore(accu)
+      // }, 1000);
       if(yoga[maxIndex]!='Warrier')
       {
         props.changeTimerState(2, false)
