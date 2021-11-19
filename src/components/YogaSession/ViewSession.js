@@ -19,9 +19,13 @@ export class ViewSession extends Component {
         play_btn : true,
         play_pose: false
       },
+      NRestart: 0,
+      scorearr:[],
+
       key: 0,
       pauseTime: -1,
       shouldRepeat: true,
+      reportData: {} ,
       timerProps: {
         // isPlaying: play ,
         size: 120,
@@ -38,6 +42,18 @@ export class ViewSession extends Component {
     this.nextPose = this.nextPose.bind(this);
     this.shouldRestartTimer = this.shouldRestartTimer.bind(this);
     this.timerchildRef = React.createRef();
+  }
+
+  addScore = (score) => {
+    var scorearr = this.state.scorearr
+    // var reportData = this.state.reportData
+    
+    
+    scorearr.push(score)
+    this.setState({
+      scorearr: scorearr,
+      // reportData: reportData
+    })
   }
 
   changePauseTimeState = (Case) => {
@@ -73,7 +89,9 @@ export class ViewSession extends Component {
       console.log('Restart Timer', time.getTime()/1000 - this.state.pauseTime)
       this.changePauseTimeState(2)
       this.setState({
-        key: this.state.key +1
+        key: this.state.key +1,
+        NRestart: this.state.NRestart +1
+        
       })
     }
   }
@@ -115,9 +133,16 @@ export class ViewSession extends Component {
   };
 
   nextPose = () => {
-    const { currentID, totalPoses, key, shouldRepeat } = this.state;
+    const { currentID, totalPoses, key, shouldRepeat, scorearr, NRestart } = this.state;
+    let reportData = this.state.reportData;
+    if(Object.keys(reportData).length === 0)
+    {
+      Schedule.map(item => reportData[`${item.yoga_name}`] = [[], 0])
+      console.log('Report created first time', reportData)
+    }
+    reportData[Schedule[currentID-1].yoga_name] = [scorearr, NRestart]
     console.log("next Pose", currentID);
-
+    console.log('report', reportData)
     if(Schedule[currentID-1].both_sides==true && shouldRepeat){
       this.setState({
         key: key+1,
@@ -131,6 +156,9 @@ export class ViewSession extends Component {
       this.setState({
         key: key+1,
         currentID: currentID + 1,
+        scorearr: [],
+        NRestart: 0,
+        reportData: reportData,
         shouldRepeat: true
       });
 
@@ -217,7 +245,7 @@ export class ViewSession extends Component {
         </div>
         <div style={{}}>
         <div>
-          <Model currentPose={Schedule[this.state.currentID-1].yoga_name} changeTimerState={(Case, State) => this.changeTimerState(Case, State)} changePauseTimeState = {(Case) => this.changePauseTimeState(Case)} />
+          <Model currentPose={Schedule[this.state.currentID-1].yoga_name} changeTimerState={(Case, State) => this.changeTimerState(Case, State)} changePauseTimeState = {(Case) => this.changePauseTimeState(Case)} addScore = {(score) => this.addScore(score)} />
         </div>
         <div style={{margin:'5%'}}>
           <PoseDemonstration poseName={Schedule[this.state.currentID-1].yoga_name} />
