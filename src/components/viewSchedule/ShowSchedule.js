@@ -2,7 +2,7 @@ import react, { useState } from 'react'
 import db from "../../firebase";
 import { getFirestore, getDocs } from 'firebase/firestore';
 import firebase from '../../firebase';
-import { collection, addDoc, doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
+import { collection, addDoc, doc, getDoc, updateDoc, setDoc,deleteDoc } from "firebase/firestore";
 import ReactConfirmAlert from "react-confirm-alert";
 import {
   Modal,
@@ -27,9 +27,20 @@ function ShowSchedule() {
     setresult(docSnap.data()[localStorage.getItem('email')])
   }
 
-  Fetchdoc();
+  // Fetchdoc();
+
+  // const DeleteDoc = async (day,time) =>{
+  //   const cityRef = doc(db, 'Scheudle', localStorage.getItem('email'));
+  //   console.log(day,time)
+  // //   await updateDoc(cityRef, {
+  // //     capital: deleteField()
+  // // });
+  
+
+  // }
 
   const ScheduleTable = () => {
+    Fetchdoc();
     let ourList = []
     let weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     for (let i = 0; i < 7; i++) {
@@ -65,14 +76,14 @@ function ShowSchedule() {
 
         <tr>
 
-          <td>{schd[0]}</td>
-          <td>{schd[1]}</td>
+          <td style={{padding: 35}}>{schd[0]}</td>
+          <td style={{padding: 35}}>{schd[1]}</td>
           <td>
 
             <div style={{
               display: 'block',
               width: 500,
-              padding: 30
+               padding: 20
             }}>
               <OverlayTrigger
                 placement="bottom"
@@ -94,6 +105,23 @@ function ShowSchedule() {
             </div>
 
           </td>
+          <td style={{padding: 30}}> <Button variant="danger" onClick={async()=>{const cityRef = doc(db, "Schedule", localStorage.getItem('email'));
+            const docSnap = await getDoc(cityRef);
+            var data = docSnap.data();
+            var c = localStorage.getItem('email')
+            let schedule = data[localStorage.getItem('email')]
+            let var1 = schedule[schd[0]]
+            delete var1[schd[1]]
+            console.log(var1)
+            schedule[schd[0]]=var1
+            console.log(schedule)
+            const d={
+              [c]:schedule
+            }
+
+            await setDoc(cityRef,d);
+            console.log("hogya")
+            }}>Delete</Button></td>
         </tr>
 
       )
@@ -109,6 +137,7 @@ function ShowSchedule() {
             <th style={{width:400}}>Day</th>
             <th style={{width:600}}>Time</th>
             <th style={{width:400}}>Asanas</th>
+            <th style={{width:400}}>Delete Schedule</th>
           </tr>
         </thead>
         <tbody>{ScheduleTable()}</tbody>
