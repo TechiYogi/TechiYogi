@@ -1,5 +1,5 @@
 import React , {useState,useEffect}from 'react';
-import firebase from './firebase_config';
+import firebase from '../../firebase';
 import GoogleLogin from 'react-google-login';
 import {getAuth,signInWithPopup,GoogleAuthProvider} from 'firebase/auth';
 import {
