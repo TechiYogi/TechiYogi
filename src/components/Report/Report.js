@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component,useState } from "react";
 import ReportNav from "./ReportNav";
 import ShowReport from "./ShowReport";
 
@@ -10,7 +10,7 @@ const [report, setreport] = useState({})
     <div>
       <ReportNav />
       <div style={{ marginTop: "55px" }}>
-        <ShowReport report={report} />
+        <ShowReport/>
       </div>
     </div>
   );
