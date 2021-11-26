@@ -1,23 +1,19 @@
-import React, { Component } from 'react'
-import ReportNav from './ReportNav'
-import SaveReport from './SaveReport'
-import ShowReport from './ShowReport'
-import {Button} from 'reactstrap'
-export class Report extends Component {
+import React, { Component } from "react";
+import ReportNav from "./ReportNav";
+import ShowReport from "./ShowReport";
 
-    
+function Report() {
 
-    render() {
-        return (
-            <div>
-                <ReportNav/>
-                <div style={{marginTop:'55px'}}>
-                <ShowReport/>
-                <Button onClick={SaveReport}>Save Report</Button>
-                </div>
-            </div>
-        )
-    }
+const [report, setreport] = useState({})
+
+  return (
+    <div>
+      <ReportNav />
+      <div style={{ marginTop: "55px" }}>
+        <ShowReport report={report} />
+      </div>
+    </div>
+  );
 }
 
-export default Report
+export default Report;

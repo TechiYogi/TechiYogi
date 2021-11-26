@@ -4,12 +4,19 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter,
 import ShowReport from '../Report/ShowReport'
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
+import SaveReport from '../Report/SaveReport';
 
 function EndSessionModal() {
 
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
+
+    const endSession = () => {
+        console.log('Ending Session')
+        SaveReport();
+        toggle();
+    }
 
     const handleEnd = () => {
 
@@ -21,7 +28,7 @@ function EndSessionModal() {
                 label: 'Yes',
                 onClick: () => {
                     // alert("Bye bye!");
-                    toggle();
+                    endSession()
                 }
               },
               {
