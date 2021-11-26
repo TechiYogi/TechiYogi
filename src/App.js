@@ -10,7 +10,6 @@ import Report from './components/Report/Report';
 import CreateSchedule from './components/Dashboard/CreateSchedule';
 import Schedule from './components/viewSchedule/Schedule';
 
-
 function App() {
   
   return (
