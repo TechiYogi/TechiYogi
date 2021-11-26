@@ -9,7 +9,6 @@ import EndSessionModal from './components/YogaSession/EndSessionModal';
 import Report from './components/Report/Report';
 import CreateSchedule from './components/Dashboard/CreateSchedule';
 import Schedule from './components/viewSchedule/Schedule';
-import saveRep from './components/Report/SaveReport';
 
 function App() {
   
@@ -25,7 +24,6 @@ function App() {
       <CreateSchedule/>
       } />
       <Route path='/report' element={<Report/>} />
-       <Route path='/saveRep' element={<saveRep/>}/> 
       <Route path='/schedule' element={<Schedule/>} />
       </Routes> 
       </Router>
