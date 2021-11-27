@@ -12,34 +12,30 @@ import {
 class ShowReport extends Component {
   constructor(props) {
     super(props);
+    const latest = {
+      //this.props.currRep
+      "chair": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6], 0]",
+      "cobra": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 4], 1]",
+      "dog": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 5, 4, 1, 2], 2]",
+      "tree": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 6, 5, 4, 1, 3], 8]",
+      "warrior": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 4, 5, 6, 1, 7, 6, 2], 15]"
+    }
+    
+    
+
+    let report=[]
+    for(let key in latest){
+     let arr = JSON.parse(latest[key])
+      
+      let temp={}
+      temp["yoga_name"]=key
+      temp["repeats"]=arr[1]
+      temp["score"]=arr[0]
+      report.push(temp)
+
+    }
     this.state = {
-      report: [
-        {
-          yoga_name: "Chair",
-          repeats: 2,
-          score: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        },
-        {
-          yoga_name: "Cobra",
-          repeats: 2,
-          score: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        },
-        {
-          yoga_name: "Dog",
-          repeats: 2,
-          score: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        },
-        {
-          yoga_name: "Tree",
-          repeats: 2,
-          score: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        },
-        {
-          yoga_name: "Warrier",
-          repeats: 2,
-          score: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        },
-      ],
+      rep:report,
       modal: false,
     };
     this.analysisChart = this.analysisChart.bind(this)
@@ -101,9 +97,9 @@ class ShowReport extends Component {
   };
 
   reportTable = () => {
-    const { report } = this.state;
+    const { rep } = this.state;
     var id = 1;
-    return report.map((pose) => {
+    return rep.map((pose) => {
       return (
         <tr>
           <th scope="row">{id}</th>
@@ -113,7 +109,7 @@ class ShowReport extends Component {
               return acc + val;
             }, 0) / pose.score.length}
           </td>
-          <td>1</td>
+          <td>{pose.repeats}</td>
           <td>
             {" "}
             <Button outline color="success" onClick={this.setModal}>

@@ -20,7 +20,7 @@ const SaveReport = () => {
     }
     const hour = now.getHours()
     const mint = now.getMinutes()
-    const currTime = hour.toString() + ":" + mint.toString()
+    const currTime = hour.toString() + ":" + mint.toString() + "," + now.getDate().toString() + "/" + (now.getMonth()+1).toString()
     const c = localStorage.getItem('email')
     const time = { [currTime]: report }
     const day = { [currDay]: time }
