@@ -14,16 +14,15 @@ const SaveReport = (reportData) => {
             "tree": [[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 6, 5, 4, 1, 3], 0],
             "warrior": [[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 4, 5, 6, 1, 7, 6, 2], 0]
         }
-        
         report = reportData
     
-        console.log('Save Report Data',report)
+        // console.log('Save Report Data',report)
         var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const now = new Date();
         var currDay = days[now.getDay()];
-        for (let rep in report) {
-            report[rep] = JSON.stringify(report[rep])
-        }
+        // for (let rep in report) {
+        //     report[rep] = JSON.stringify(report[rep])
+        // }
         const hour = now.getHours()
         const mint = now.getMinutes()
         const currTime = hour.toString() + ":" + mint.toString()
@@ -63,7 +62,6 @@ const SaveReport = (reportData) => {
             const d = {
                 [c]: data
             }
-            console.log('Save Report Data UPLOADING',report)
             setDoc(docRef, d)
         }
         else {

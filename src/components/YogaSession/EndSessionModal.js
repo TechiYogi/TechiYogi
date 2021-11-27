@@ -13,7 +13,11 @@ const EndSessionModal = (props) => {
     const toggle = () => setModal(!modal);
 
     const endSession = () => {
-        SaveReport(props.report);
+        let report = props.report
+        for (let rep in report) {
+            report[rep] = JSON.stringify(report[rep])
+        }
+        SaveReport(report);
         toggle();
     }
 

@@ -7,6 +7,7 @@ import { getFirestore, getDocs } from 'firebase/firestore';
 import { collection, addDoc, doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import { query, where } from "firebase/firestore";
 import firebase from '../../firebase';
+import {Button} from 'reactstrap'
 
 function Report() {
 
