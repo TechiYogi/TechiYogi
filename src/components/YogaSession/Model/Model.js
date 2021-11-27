@@ -128,7 +128,9 @@ function Model(props) {
       };
 
 
-    runMovenet();
+    if(props.play_btn){
+      runMovenet();
+    }
 
     return (
         <div className='.col-6'

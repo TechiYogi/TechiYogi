@@ -4,29 +4,33 @@ import { collection, addDoc, doc, getDoc, updateDoc, setDoc } from "firebase/fir
 import { query, where } from "firebase/firestore";
 import firebase from '../../firebase';
 
-const SaveReport = () => {
-    const report = {
-        "chair": [[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6], 0],
-        "cobra": [[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 4], 0],
-        "dog": [[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 5, 4, 1, 2], 0],
-        "tree": [[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 6, 5, 4, 1, 3], 0],
-        "warrior": [[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 4, 5, 6, 1, 7, 6, 2], 0]
-    }
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const now = new Date();
-    var currDay = days[now.getDay()];
-    for (let rep in report) {
-        report[rep] = JSON.stringify(report[rep])
-    }
-    const hour = now.getHours()
-    const mint = now.getMinutes()
-    const currTime = hour.toString() + ":" + mint.toString()
-    const c = localStorage.getItem('email')
-    const time = { [currTime]: report }
-    const day = { [currDay]: time }
+const SaveReport = (reportData) => {
     
     const Func = async () => {
+        let report = {  
+            "chair": [[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6], 0],
+            "cobra": [[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 4], 0],
+            "dog": [[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 5, 4, 1, 2], 0],
+            "tree": [[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 6, 5, 4, 1, 3], 0],
+            "warrior": [[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 4, 5, 6, 1, 7, 6, 2], 0]
+        }
+        
+        report = reportData
     
+        console.log('Save Report Data',report)
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const now = new Date();
+        var currDay = days[now.getDay()];
+        for (let rep in report) {
+            report[rep] = JSON.stringify(report[rep])
+        }
+        const hour = now.getHours()
+        const mint = now.getMinutes()
+        const currTime = hour.toString() + ":" + mint.toString()
+        const c = localStorage.getItem('email')
+        const time = { [currTime]: report }
+        const day = { [currDay]: time }
+
         const docRef = doc(db, "Report", c);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
@@ -59,6 +63,7 @@ const SaveReport = () => {
             const d = {
                 [c]: data
             }
+            console.log('Save Report Data UPLOADING',report)
             setDoc(docRef, d)
         }
         else {

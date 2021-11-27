@@ -6,19 +6,20 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import SaveReport from '../Report/SaveReport';
 
-function EndSessionModal() {
+const EndSessionModal = (props) => {
 
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
 
     const endSession = () => {
-        console.log('Ending Session')
-        SaveReport();
+        SaveReport(props.report);
         toggle();
     }
 
     const handleEnd = () => {
+
+        props.changeTimerState(3);
 
         confirmAlert({
             title: 'This will End the Session and generate the report for Aasan(s) performed till now!',
@@ -34,6 +35,7 @@ function EndSessionModal() {
               {
                 label: 'No',
                 onClick: () =>{
+                    props.changeTimerState(1)
                     // alert("Great! you should not compromise with your health!")
                 }
               }
@@ -41,6 +43,7 @@ function EndSessionModal() {
           })
 
     };
+
     
     return (
         <div>
@@ -59,3 +62,5 @@ function EndSessionModal() {
 }
 
 export default EndSessionModal
+
+
