@@ -11,14 +11,23 @@ import {Button} from 'reactstrap'
 
 function Report() {
 
-const [report, setreport] = useState({})
+// const [report, setreport] = useState([])
+const report = {}
 let c = localStorage.getItem('email')
 const Fetchdoc = async () => {
   const docRef = doc(db, "Report", c);
   const docSnap = await getDoc(docRef);
-  
-
+  let days_dict = docSnap.data()[c]
+  for(let key in days_dict){
+    let dict = days_dict[key]
+    for(let time in dict){
+      report[time] = dict[time]
+      
+    }
+  }
+  console.log(report)
 }
+Fetchdoc()
 
   return (
     <div>
