@@ -1,10 +1,9 @@
 import React from 'react';
-import {Container, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, NavLink, Nav, Button} from 'reactstrap';
-import CreateSchedule from './CreateSchedule';
+import {Container, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, NavLink, Nav} from 'reactstrap';
 // import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 // import { BrowserRouter as Router } from 'react-router-dom';
 
-class Header extends React.Component {
+class ReportNav extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
@@ -40,15 +39,8 @@ class Header extends React.Component {
                       <NavLink href="#">Features</NavLink>
                   </NavItem>
                   <NavItem>
-                      <NavLink href="/report">Report</NavLink>
+                      <NavLink href="/dashboard">Dashboard</NavLink>
                   </NavItem>
-                  <NavItem>
-                    {/* <NavLink href="#">Options</NavLink> */}
-                    <CreateSchedule/>
-                  </NavItem>
-                  <NavItem >
-                  <Button color='danger' style={{}}>Logout</Button>
-                </NavItem>
                 </Nav>
                 {/* <NavbarNav right>
                   <NavItem>
@@ -69,4 +61,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default ReportNav;

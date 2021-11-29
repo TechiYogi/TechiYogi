@@ -15,19 +15,25 @@ function Model(props) {
     const yoga = ['Chair', 'Cobra', 'Dog', 'Tree', 'Warrier']
 
     const processinput = (keypoints_with_score) => {
-      const output = [[]] ;
+      const output = [] ;
        keypoints_with_score.map( (pose) => {
-        output[0].push(pose.x);
-        output[0].push(pose.y);
-        output[0].push(pose.score);
+        output.push(pose.x);
+        output.push(pose.y);
+        output.push(pose.score);
       })
-      return output;
+    //   console.log('gygy', [output])
+    //   const a =[ [
+    //     60.09022,	168.13774,	0.40708113,	55.755024,	171.9038,	0.5688903,	56.013203,	167.30927,	0.44422475,	58.6052,	181.30801,	0.47244436,	59.013626,	172.27188	,0.32432956	,77.5734	,186.53023	,0.45712206	,78.18744	,172.89642	,0.55331814	,40.136227,	180.51253	,0.45210832	,48.095844	,163.63655	,0.29564857	,9.35324	,170.01689	,0.74201226	,10.097645	,163.28198	,0.1963837,	148.12903	,173.79872	,0.5823215	,144.63728,	161.46237,	0.5968966	,210.91728	,172.28476	,0.54477686	,161.8962	,136.79195	,0.35736358,	264.49902	,171.87527,	0.760858,	178.69756,	160.57985,	0.25913876
+  
+    //   ]]
+    //   console.log('aaaa', a)
+      return [output];
     }
-
+    
     const predictPose = async (pose) =>{
-      // console.log('Model Loading');
-      const tfmodel = await tf.loadGraphModel('model/model.json')
-      // console.log('prediction');
+      // // console.log('Model Loading');
+      const tfmodel = await tf.loadGraphModel('model/testmodel/model.json')
+      // // console.log('prediction');
       const pred = tfmodel.predict(tf.tensor2d(pose));
       writeElement(pred.dataSync());
       // console.log('.predict', pred.dataSync());
@@ -43,6 +49,9 @@ function Model(props) {
       }
      setPose(maxIndex);
       setaccu(res[maxIndex]);
+      // setInterval(() => {
+        props.addScore(accu)
+      // }, 1000);
       if(yoga[maxIndex]!='Warrier')
       {
         props.changeTimerState(2, false)
@@ -87,6 +96,9 @@ function Model(props) {
 
             // Make Detections
 
+            // const image = tf.image.cropAndResize(tf.expandDims(video, 0), 256, 256)
+            
+
             const pose = await detector.estimatePoses(video);
             // console.log(pose);
             
@@ -116,7 +128,9 @@ function Model(props) {
       };
 
 
-    runMovenet();
+    if(props.play_btn){
+      runMovenet();
+    }
 
     return (
         <div className='.col-6'

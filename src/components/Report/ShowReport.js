@@ -12,35 +12,32 @@ import {
 class ShowReport extends Component {
   constructor(props) {
     super(props);
+    let latest = {
+      //this.props.currRep
+      "chair": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6], 0]",
+      "cobra": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 4], 1]",
+      "dog": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 5, 4, 1, 2], 2]",
+      "tree": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 6, 5, 4, 1, 3], 8]",
+      "warrior": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 4, 5, 6, 1, 7, 6, 2], 15]"
+    }
+  //   latest = this.props.report
+  //   for (let rep in latest) {
+  //     report[rep] = JSON.stringify(report[rep])
+  // }
 
+    let report=[]
+    for(let key in latest){
+     let arr = JSON.parse(latest[key])
+      
+      let temp={}
+      temp["yoga_name"]=key
+      temp["repeats"]=arr[1]
+      temp["score"]=arr[0]
+      report.push(temp)
+
+    }
     this.state = {
-      report: [
-        {
-          yoga_name: "Chair",
-          repeats: 2,
-          score: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        },
-        {
-          yoga_name: "Cobra",
-          repeats: 2,
-          score: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        },
-        {
-          yoga_name: "Dog",
-          repeats: 2,
-          score: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        },
-        {
-          yoga_name: "Tree",
-          repeats: 2,
-          score: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        },
-        {
-          yoga_name: "Warrier",
-          repeats: 2,
-          score: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
-        },
-      ],
+      rep:report,
       modal: false,
     };
     this.analysisChart = this.analysisChart.bind(this)
@@ -102,9 +99,9 @@ class ShowReport extends Component {
   };
 
   reportTable = () => {
-    const { report } = this.state;
+    const { rep } = this.state;
     var id = 1;
-    return report.map((pose) => {
+    return rep.map((pose) => {
       return (
         <tr>
           <th scope="row">{id}</th>
@@ -114,7 +111,7 @@ class ShowReport extends Component {
               return acc + val;
             }, 0) / pose.score.length}
           </td>
-          <td>1</td>
+          <td>{pose.repeats}</td>
           <td>
             {" "}
             <Button outline color="success" onClick={this.setModal}>
@@ -163,173 +160,3 @@ class ShowReport extends Component {
 }
 
 export default ShowReport;
-{
-  /* <import React, { Component } from 'react'
-import {Chart} from 'react-google-charts'
-import { Button, Table } from 'reactstrap'
-
-class ShowReport extends Component {
-
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-            report:[
-                {
-                    yoga_name: 'Chair',
-                    repeats: 2,
-                    score: [8,8,8,8,8,8,8,8,8,8,8,8,8,8]
-                },
-                {
-                    yoga_name: 'Cobra',
-                    repeats: 2,score: [
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],                
-                        
-                    ]
-                },
-                {
-                    yoga_name: 'Dog',
-                    repeats: 2,
-                    score: [
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],                
-                        
-                    ]
-                },
-                {
-                    yoga_name: 'Tree',
-                    repeats: 2,
-                    score: [
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],                
-                        
-                    ]
-                },
-                {
-                    yoga_name: 'Warrier',
-                    repeats: 2,
-                    score: [
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],
-                        [(new Date).getTime/1000, 8],                
-                        
-                    ]
-                },
-                
-            ]
-        }
-    }
-
-    detailedAnalysis = (id) =>{
-            
-        
-        
-    }
-
-    reportTable = () =>{
-        const {report} = this.state
-        var id = 1
-        return(
-            report.map( pose =>{
-                return(
-                    <tr>
-                        <th scope='row'>{id++}</th>
-                        <td>{pose.yoga_name}</td>
-                        <td>{pose.score.reduce(function(acc, val) { return acc + val; }, 0)/pose.score.length }</td>
-                        <td> <Button outline color='success' onClick={this.detailedAnalysis(id-1)} >View Detailed Analysis</Button> </td>
-                        <td>
-                        <Chart
-  width={'100%'}
-  height={'500'}
-  chartType="Line"
-  loader={<div>Loading Chart</div>}
-  data={[
-    [
-      { type: 'date', label: 'Day' },
-      'Average temperature',
-      'Average hours of daylight',
-    ],
-    [new Date(2014, 0), -0.5, 5.7],
-    [new Date(2014, 1), 0.4, 8.7],
-    [new Date(2014, 2), 0.5, 12],
-    [new Date(2014, 3), 2.9, 15.3],
-    [new Date(2014, 4), 6.3, 18.6],
-    [new Date(2014, 5), 9, 20.9],
-    [new Date(2014, 6), 10.6, 19.8],
-    [new Date(2014, 7), 10.3, 16.6],
-    [new Date(2014, 8), 7.4, 13.3],
-    [new Date(2014, 9), 4.4, 9.9],
-    [new Date(2014, 10), 1.1, 6.6],
-    [new Date(2014, 11), -0.2, 4.5],
-  ]}
-  options={{
-    chart: {
-      title:
-        'Average Temperatures and Daylight in Iceland Throughout the Year',
-    },
-    width: 400,
-    height: 300,
-    series: {
-      // Gives each series an axis name that matches the Y-axis below.
-      0: { axis: 'Temps' },
-      1: { axis: 'Daylight' },
-    },
-    axes: {
-      // Adds labels to each axis; they don't have to match the axis names.
-      y: {
-        Temps: { label: 'Temps (Celsius)' },
-        Daylight: { label: 'Daylight' },
-      },
-    },
-  }}
-  rootProps={{ 'data-testid': '4' }}
-/>
-                        </td>
-                    </tr>
-                )
-            })
-        )
-    }
-
-> */
-}
