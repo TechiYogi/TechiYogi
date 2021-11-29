@@ -10,6 +10,8 @@ const EndSessionModal = (props) => {
 
     const [modal, setModal] = useState(false);
 
+    const [report, setreport] = useState({})
+
     const toggle = () => setModal(!modal);
 
     const endSession = () => {
@@ -17,9 +19,18 @@ const EndSessionModal = (props) => {
         for (let rep in report) {
             report[rep] = JSON.stringify(report[rep])
         }
+        setreport(report);
         SaveReport(report);
         toggle();
     }
+
+    // const stringifyReport = () => {
+    //     let report = props.report
+    //     for (let rep in report) {
+    //         report[rep] = JSON.stringify(report[rep])
+    //     }
+    //     setreport(report)
+    // }
 
     const handleEnd = () => {
 
@@ -55,7 +66,7 @@ const EndSessionModal = (props) => {
         <Modal isOpen={modal} toggle={toggle} className='endSession'>
             <ModalHeader toggle={toggle}>Your Report</ModalHeader>
             <ModalBody >
-                <ShowReport  />
+                <ShowReport report={report} />
             </ModalBody>
             <ModalFooter>
             <Button color="secondary" onClick={toggle}>Close</Button>

@@ -20,9 +20,9 @@ class ShowReport extends Component {
       "tree": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 6, 5, 4, 1, 3], 8]",
       "warrior": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 4, 5, 6, 1, 7, 6, 2], 15]"
     }
-  //   latest = this.props.report
+    latest = this.props.report
   //   for (let rep in latest) {
-  //     report[rep] = JSON.stringify(report[rep])
+  //     latest[rep] = JSON.stringify(latest[rep])
   // }
 
     let report=[]
@@ -107,9 +107,11 @@ class ShowReport extends Component {
           <th scope="row">{id}</th>
           <td>{pose.yoga_name}</td>
           <td>
-            {pose.score.reduce(function (acc, val) {
+            {((pose.score.reduce(function (acc, val) {
               return acc + val;
-            }, 0) / pose.score.length}
+            }, 0) / pose.score.length).toPrecision(3))>0?(pose.score.reduce(function (acc, val) {
+              return acc + val;
+            }, 0) / pose.score.length).toPrecision(3): 0}
           </td>
           <td>{pose.repeats}</td>
           <td>
