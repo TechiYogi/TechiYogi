@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, NavLink, Nav} from 'reactstrap';
+import {Container, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, NavLink, Nav, Button} from 'reactstrap';
 import CreateSchedule from './CreateSchedule';
 // import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 // import { BrowserRouter as Router } from 'react-router-dom';
@@ -46,6 +46,9 @@ class Header extends React.Component {
                     {/* <NavLink href="#">Options</NavLink> */}
                     <CreateSchedule/>
                   </NavItem>
+                  <NavItem >
+                  <Button color='danger' style={{}}>Logout</Button>
+                </NavItem>
                 </Nav>
                 {/* <NavbarNav right>
                   <NavItem>

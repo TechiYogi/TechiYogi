@@ -55,7 +55,7 @@ const EndSessionModal = (props) => {
         <Modal isOpen={modal} toggle={toggle} className='endSession'>
             <ModalHeader toggle={toggle}>Your Report</ModalHeader>
             <ModalBody >
-                <ShowReport/>
+                <ShowReport  />
             </ModalBody>
             <ModalFooter>
             <Button color="secondary" onClick={toggle}>Close</Button>

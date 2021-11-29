@@ -12,7 +12,7 @@ import {
 class ShowReport extends Component {
   constructor(props) {
     super(props);
-    const latest = {
+    let latest = {
       //this.props.currRep
       "chair": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6], 0]",
       "cobra": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 4], 1]",
@@ -20,8 +20,10 @@ class ShowReport extends Component {
       "tree": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 6, 5, 4, 1, 3], 8]",
       "warrior": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 4, 5, 6, 1, 7, 6, 2], 15]"
     }
-    
-    
+  //   latest = this.props.report
+  //   for (let rep in latest) {
+  //     report[rep] = JSON.stringify(report[rep])
+  // }
 
     let report=[]
     for(let key in latest){
