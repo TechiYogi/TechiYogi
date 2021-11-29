@@ -184,7 +184,6 @@ const LandingPage = (props) => {
       .then((re) => {
         localStorage.setItem("email", auth.currentUser.email);
         
-        alert('success');
         //<Route path="/dashboard" element={<Dashboard />} />
         //console.log(re);
         window.location = '/dashboard';
