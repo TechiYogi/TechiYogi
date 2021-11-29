@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import GoogleLogin from "react-google-login";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -20,6 +21,7 @@ import {
   CarouselIndicators,
   CarouselCaption,
 } from "reactstrap";
+import Dashboard from "../Dashboard/Dashboard";
 const email = "";
 const items = [
   {
@@ -177,10 +179,15 @@ const LandingPage = (props) => {
     // alert("hello");
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
+
     signInWithPopup(auth, provider)
       .then((re) => {
         localStorage.setItem("email", auth.currentUser.email);
+        
+        alert('success');
+        //<Route path="/dashboard" element={<Dashboard />} />
         //console.log(re);
+        window.location = '/dashboard';
       })
       .catch((err) => {
         console.log(err);
