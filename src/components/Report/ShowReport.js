@@ -98,20 +98,29 @@ class ShowReport extends Component {
     );
   };
 
+  scoreAverage = (scores) => {
+    let sum = 0;
+    for(let i in scores){
+      sum+=i;
+    }
+    return sum/scores.length
+  }
+
   reportTable = () => {
     const { rep } = this.state;
     var id = 1;
+    // console.log(rep)
+    if(rep.length == 0)
+    {
+      return <div>Session not performed</div>
+    }
     return rep.map((pose) => {
       return (
         <tr>
           <th scope="row">{id}</th>
           <td>{pose.yoga_name}</td>
           <td>
-            {((pose.score.reduce(function (acc, val) {
-              return acc + val;
-            }, 0) / pose.score.length).toPrecision(3))>0?(pose.score.reduce(function (acc, val) {
-              return acc + val;
-            }, 0) / pose.score.length).toPrecision(3): 0}
+            {parseFloat(this.scoreAverage(pose.score))>0? parseFloat(this.scoreAverage(pose.score)).toPrecision(3): 3}
           </td>
           <td>{pose.repeats}</td>
           <td>

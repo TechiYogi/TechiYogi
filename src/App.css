@@ -28,6 +28,32 @@
   color: #61dafb;
 }
 
+.sidenav{
+  /* height: 90vh; */
+  width: 25vw;
+  position: fixed;
+  z-index: 1;
+  top: 30;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+  
+}
+.Links{
+  color:black;
+  font-size: 1.5rem;
+  font-weight: 600;
+  
+}
+
+.learnC {
+  margin-left: 25vw; /* Same as the width of the sidenav */
+   /* Increased text to enable scrolling */
+  
+  font-weight: 400;
+  padding: 10px 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
