@@ -33,7 +33,7 @@ class ReportNav extends React.Component {
               <Collapse isOpen = { this.state.collapse } navbar>
                 <Nav navbar pills>
                   <NavItem active>
-                      <NavLink href="#">Schedule</NavLink>
+                      <NavLink href="/schedule">Schedule</NavLink>
                   </NavItem>
                   <NavItem>
                       <NavLink href="#">Features</NavLink>

@@ -20,9 +20,9 @@ class ShowReport extends Component {
       "tree": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 6, 5, 4, 1, 3], 8]",
       "warrior": "[[1, 2, 4, 3, 5, 6, 2, 3, 1, 5, 3, 4, 2, 5, 6, 4, 6, 3, 4, 5, 6, 1, 7, 6, 2], 15]"
     }
-  //   latest = this.props.report
+    latest = this.props.report
   //   for (let rep in latest) {
-  //     report[rep] = JSON.stringify(report[rep])
+  //     latest[rep] = JSON.stringify(latest[rep])
   // }
 
     let report=[]
@@ -98,18 +98,29 @@ class ShowReport extends Component {
     );
   };
 
+  scoreAverage = (scores) => {
+    let sum = 0;
+    for(let i in scores){
+      sum+=i;
+    }
+    return sum/scores.length
+  }
+
   reportTable = () => {
     const { rep } = this.state;
     var id = 1;
+    // console.log(rep)
+    if(rep.length == 0)
+    {
+      return <div>Session not performed</div>
+    }
     return rep.map((pose) => {
       return (
         <tr>
           <th scope="row">{id}</th>
           <td>{pose.yoga_name}</td>
           <td>
-            {pose.score.reduce(function (acc, val) {
-              return acc + val;
-            }, 0) / pose.score.length}
+            {parseFloat(this.scoreAverage(pose.score))>0? parseFloat(this.scoreAverage(pose.score)).toPrecision(3): 3}
           </td>
           <td>{pose.repeats}</td>
           <td>

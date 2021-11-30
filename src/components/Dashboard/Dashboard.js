@@ -68,7 +68,7 @@ class Dashboard extends Component {
                             </Popover>
                         </CardBody>
                         <CardFooter>
-                            <Button style={{float:'left'}} color='primary' size='sm'>Start Session</Button>
+                            <Button style={{float:'left'}} color='primary' size='sm' onClick={()=>window.location="/session"}>Start Session</Button>
                             <Button style={{float:'right'}} color='info' size='sm'> Add in Schedule</Button>
                         </CardFooter>
                     </Card>

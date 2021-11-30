@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from "../../firebase";
 import {Container, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, NavLink, Nav, Button} from 'reactstrap';
 import CreateSchedule from './CreateSchedule';
 // import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
@@ -11,12 +12,26 @@ class Header extends React.Component {
           collapse: false,
       };
       this.onClick = this.onClick.bind(this);
+      this.Logout = this.Logout.bind(this);
   }
 
   onClick() {
     this.setState({
         collapse: !this.state.collapse,
       });
+  }
+
+  Logout()
+  {
+    // firebase.auth().signOut().then(function() {
+    //   alert("signed out Successfully");
+    //   window.location="/";
+    // }, function(error) {
+    //   // An error happened.
+    //   console.log(error);
+    // });
+    alert("Signed Out");
+    window.location="/";
   }
 
   render() {
@@ -34,7 +49,7 @@ class Header extends React.Component {
               <Collapse isOpen = { this.state.collapse } navbar>
                 <Nav navbar pills>
                   <NavItem active>
-                      <NavLink href="#">Schedule</NavLink>
+                      <NavLink href="/schedule">Schedule</NavLink>
                   </NavItem>
                   <NavItem>
                       <NavLink href="#">Features</NavLink>
@@ -47,7 +62,7 @@ class Header extends React.Component {
                     <CreateSchedule/>
                   </NavItem>
                   <NavItem >
-                  <Button color='danger' style={{}}>Logout</Button>
+                  <Button color='danger' style={{}} onClick={this.Logout} >Logout</Button>
                 </NavItem>
                 </Nav>
                 {/* <NavbarNav right>
