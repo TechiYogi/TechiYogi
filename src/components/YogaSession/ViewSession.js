@@ -275,6 +275,7 @@ export class ViewSession extends Component {
           <div style={{ margin: "5%" }}>
             <PoseDemonstration
               poseName={Schedule[this.state.currentID - 1].yoga_name}
+              gif={Schedule[this.state.currentID - 1].gif}
             />
           </div>
         </div>

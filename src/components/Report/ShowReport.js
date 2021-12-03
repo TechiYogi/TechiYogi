@@ -48,6 +48,8 @@ class ShowReport extends Component {
     this.setState({
       modal: !modal,
     });
+    //window.location="/dashboard";
+    
   };
 
   analysisChart = (id) => {
