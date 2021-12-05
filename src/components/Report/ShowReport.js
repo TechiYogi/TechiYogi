@@ -122,7 +122,7 @@ class ShowReport extends Component {
           <th scope="row">{id}</th>
           <td>{pose.yoga_name}</td>
           <td>
-            {parseFloat(this.scoreAverage(pose.score))>0? parseFloat(this.scoreAverage(pose.score)).toPrecision(3): 3}
+            {parseFloat(this.scoreAverage(pose.score))>0? (this.scoreAverage(pose.score)).toPrecision(4): 0}
           </td>
           <td>{pose.repeats}</td>
           <td>
