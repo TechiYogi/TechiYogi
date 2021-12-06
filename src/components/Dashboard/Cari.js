@@ -144,22 +144,22 @@ const Colap = (props) => (
   //   'boat pose', 'chair pose', 'chakra asana', 'dog pose',
   //   'pashchim utana asana', 'pawan mukt asana', 'setu bandh asana',
   //   'tree pose', 'triangle pose', 'virbhadrasana']
-
+const src = "images/cari_yoga_pics/";
 const items = [
   {
-    src: 'images/yoga_themes/yog1.jpeg',
+    src: 'images/cari_yoga_pics/TreePose.jpg',
     name: 'Tree',
     benefits: 'Benefits of Yog 1',
     preq : 'preq of Yog 1'
   },
   {
-    src: 'images/yoga_themes/yog1.jpeg',
+    src: src+'bhuj.jpg',
     name: 'Cobra',
     benefits: 'Benefits of Yog 2',
     preq : 'preq of Yog 2'
   },
   {
-    src: 'images/yoga_themes/yog1.jpeg',
+    src: src+"warrior.jpg",
     name: 'Warrior',
     benefits: 'Benefits of Yog 3',
     preq : 'preq of Yog 3'
