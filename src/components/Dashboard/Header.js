@@ -62,7 +62,7 @@ class Header extends React.Component {
                     <CreateSchedule/>
                   </NavItem>
                   <NavItem >
-                  <Button color='danger' style={{}} onClick={this.Logout} >Logout</Button>
+                  <Button color='danger' style={{marginLeft:"850px",height:"auto",width:"150px"}} onClick={this.Logout} >Logout</Button>
                 </NavItem>
                 </Nav>
                 {/* <NavbarNav right>
