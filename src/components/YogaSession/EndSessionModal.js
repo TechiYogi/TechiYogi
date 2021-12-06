@@ -24,6 +24,7 @@ const EndSessionModal = (props) => {
     }
 
     const endSession = () => {
+        console.log('End Session Called')
         let report = props.report
         for (let rep in report) {
             report[rep] = JSON.stringify(report[rep])
