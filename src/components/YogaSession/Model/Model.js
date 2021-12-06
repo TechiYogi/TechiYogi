@@ -57,7 +57,7 @@ function Model(props) {
       // setInterval(() => {
         props.addScore(accu)
       // }, 1000);
-      if(yoga_poses[maxIndex]!='Warrier')
+      if(yoga_poses[maxIndex]!='chair pose')
       {
         props.changeTimerState(2, false)
         props.changePauseTimeState(1);
