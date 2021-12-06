@@ -139,6 +139,12 @@ const Colap = (props) => (
     </div>
   );
 
+  // ['Ashwa sanchalanasana', 'Bhujangasana', 'HastaUttanasana',
+  //   'Hastapadasana', 'Shashankasana', 'Ushtasana', 'Vishnu Pose',
+  //   'boat pose', 'chair pose', 'chakra asana', 'dog pose',
+  //   'pashchim utana asana', 'pawan mukt asana', 'setu bandh asana',
+  //   'tree pose', 'triangle pose', 'virbhadrasana']
+
 const items = [
   {
     src: 'images/yoga_themes/yog1.jpeg',
