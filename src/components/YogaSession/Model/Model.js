@@ -41,7 +41,7 @@ function Model(props) {
       // // console.log('prediction');
       const pred = tfmodel.predict(tf.tensor2d(pose));
       writeElement(pred.dataSync());
-      console.log('.predict', pred.dataSync());
+      // console.log('.predict', pred.dataSync());
       // console.log('Model Loaded');
     }
 
@@ -57,7 +57,7 @@ function Model(props) {
       // setInterval(() => {
         props.addScore(accu)
       // }, 1000);
-      if(yoga_poses[maxIndex]!='chair pose')
+      if(yoga_poses[maxIndex]!='pashchim utana asana')
       {
         props.changeTimerState(2, false)
         props.changePauseTimeState(1);

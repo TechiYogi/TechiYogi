@@ -17,10 +17,10 @@ const EndSessionModal = (props) => {
     {
         setModal(!modal);
 
-        if(redirect)
-            window.location="/dashboard";
-        else
-            setredirect(true);      
+        // if(redirect)
+        //     window.location="/dashboard";
+        // else
+        //     setredirect(true);      
     }
 
     const endSession = () => {
