@@ -29,7 +29,7 @@ export const Schedule = [
         yoga_name: 'Tree',
         yoga_time: 10,
         both_sides: true,
-        gif: "demonstrations/treePose.gif"
+        gif: "demonstrations/treePose.jpg"
 
     },
     {
