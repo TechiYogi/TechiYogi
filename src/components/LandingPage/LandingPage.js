@@ -93,7 +93,7 @@ class Caro extends React.Component {
           onExited={this.onExited}
           key={item.src}
         >
-          <img src={item.src} alt={item.altText} height="500" width="600" />
+          <img src={item.src} alt={item.altText} height="450" width="550" />
           {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
         </CarouselItem>
       );
