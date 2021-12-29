@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter,
     } from 'reactstrap';
 import ShowReport from '../Report/ShowReport'
@@ -12,9 +12,19 @@ const EndSessionModal = (props) => {
 
     const [report, setreport] = useState({})
 
-    const toggle = () => setModal(!modal);
+    const [redirect,setredirect] = useState(false);
+    const toggle = () => 
+    {
+        setModal(!modal);
+
+        // if(redirect)
+        //     window.location="/dashboard";
+        // else
+        //     setredirect(true);      
+    }
 
     const endSession = () => {
+        console.log('End Session Called')
         let report = props.report
         for (let rep in report) {
             report[rep] = JSON.stringify(report[rep])
@@ -42,9 +52,11 @@ const EndSessionModal = (props) => {
             buttons: [
               {
                 label: 'Yes',
-                onClick: () => {
+                onClick: async () => {
                     // alert("Bye bye!");
-                    endSession()
+                    
+                    endSession();
+                    
                 }
               },
               {

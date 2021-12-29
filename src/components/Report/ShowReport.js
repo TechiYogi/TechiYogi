@@ -48,6 +48,8 @@ class ShowReport extends Component {
     this.setState({
       modal: !modal,
     });
+    //window.location="/dashboard";
+    
   };
 
   analysisChart = (id) => {
@@ -99,11 +101,12 @@ class ShowReport extends Component {
   };
 
   scoreAverage = (scores) => {
-    let sum = 0;
+    let sum =0.0 ;
     for(let i in scores){
       sum+=i;
     }
-    return sum/scores.length
+    console.log(sum)
+    return parseFloat(sum/scores.length).toPrecision(3)
   }
 
   reportTable = () => {
@@ -120,7 +123,7 @@ class ShowReport extends Component {
           <th scope="row">{id}</th>
           <td>{pose.yoga_name}</td>
           <td>
-            {parseFloat(this.scoreAverage(pose.score))>0? parseFloat(this.scoreAverage(pose.score)).toPrecision(3): 3}
+            {parseFloat(this.scoreAverage(pose.score))>0? parseFloat(this.scoreAverage(pose.score)).toPrecision(2): 0}
           </td>
           <td>{pose.repeats}</td>
           <td>

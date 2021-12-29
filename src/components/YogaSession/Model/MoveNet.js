@@ -19,7 +19,7 @@ function MoveNet() {
             {
                 modelType: poseDetection.movenet.modelType.SINGLEPOSE_THUNDER,
                 inputResolution: { width: 640, height: 480 },
-                scale: 0.8,
+                scale: 0.3,
             });
         setInterval(() => {
             detect(detector);

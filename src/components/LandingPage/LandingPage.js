@@ -25,17 +25,17 @@ import Dashboard from "../Dashboard/Dashboard";
 const email = "";
 const items = [
   {
-    src: "images/yoga_themes/woman-in-yoga-poses-vector.jpg",
+    src: "images/yoga_themes/home1.jpg",
     altText: "Slide 1",
     caption: "Slide 1",
   },
   {
-    src: "images/yoga_themes/man-sitting-in-yoga-pose-in-park.jpg",
+    src: "images/yoga_themes/home2.png",
     altText: "Slide 2",
     caption: "Slide 2",
   },
   {
-    src: "images/yoga_themes/images.jfif",
+    src: "images/yoga_themes/home3.jpg",
     altText: "Slide 3",
     caption: "Slide 3",
   },
@@ -93,7 +93,7 @@ class Caro extends React.Component {
           onExited={this.onExited}
           key={item.src}
         >
-          <img src={item.src} alt={item.altText} height="400" width="400" />
+          <img src={item.src} alt={item.altText} height="450" width="550" />
           {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
         </CarouselItem>
       );

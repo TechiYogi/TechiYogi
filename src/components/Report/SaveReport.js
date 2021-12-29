@@ -25,7 +25,7 @@ const SaveReport = (reportData) => {
         // }
         const hour = now.getHours()
         const mint = now.getMinutes()
-        const currTime = hour.toString() + ":" + mint.toString() + "," + now.getDate().toString() + "/" + (now.getMonth()+1).toString() + "/" + now.getFullYear().toString()
+        const currTime = now.getDate().toString() + "/" + (now.getMonth()+1).toString() + "/" + now.getFullYear().toString() + "," +  hour.toString() + ":" + mint.toString() 
         const c = localStorage.getItem('email')
         const time = { [currTime]: report }
         const day = { [currDay]: time }
@@ -68,6 +68,8 @@ const SaveReport = (reportData) => {
                 [c]: day
             });
         }
+
+        
     }
     
     Func()  

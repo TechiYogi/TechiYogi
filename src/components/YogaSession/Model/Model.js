@@ -13,6 +13,11 @@ function Model(props) {
     const [whichPose, setPose] = useState(-1)
     const [accu, setaccu] = useState(0.00);
     const yoga = ['Chair', 'Cobra', 'Dog', 'Tree', 'Warrier']
+    const yoga_poses = ['Ashwa sanchalanasana', 'Bhujangasana', 'HastaUttanasana',
+    'Hastapadasana', 'Shashankasana', 'Ushtasana', 'Vishnu Pose',
+    'boat pose', 'chair pose', 'chakra asana', 'dog pose',
+    'pashchim utana asana', 'pawan mukt asana', 'setu bandh asana',
+    'tree pose', 'triangle pose', 'virbhadrasana']
 
     const processinput = (keypoints_with_score) => {
       const output = [] ;
@@ -32,7 +37,7 @@ function Model(props) {
     
     const predictPose = async (pose) =>{
       // // console.log('Model Loading');
-      const tfmodel = await tf.loadGraphModel('model/testmodel/model.json')
+      const tfmodel = await tf.loadGraphModel('TrainedModel/model.json')
       // // console.log('prediction');
       const pred = tfmodel.predict(tf.tensor2d(pose));
       writeElement(pred.dataSync());
@@ -52,7 +57,7 @@ function Model(props) {
       // setInterval(() => {
         props.addScore(accu)
       // }, 1000);
-      if(yoga[maxIndex]!='Warrier')
+      if(yoga_poses[maxIndex]!='pashchim utana asana')
       {
         props.changeTimerState(2, false)
         props.changePauseTimeState(1);
@@ -143,7 +148,7 @@ function Model(props) {
             No Pose Identified
           </p> :
           <p>
-            {yoga[whichPose]},{whichPose} Pose Identified with Accuracy {accu}
+            {yoga_poses[whichPose]},{whichPose} Pose Identified with Accuracy {accu}
           </p>
           }
             <Webcam

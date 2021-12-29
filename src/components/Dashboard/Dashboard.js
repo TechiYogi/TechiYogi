@@ -20,19 +20,19 @@ class Dashboard extends Component {
                     id: 0 
                 },
                 {
-                    themeName: 'Mental Health',                   
+                    themeName: 'Surya Namaskar',                   
                     description: 'Check out these sets of aasans',
                     open: false,
                     id: 1 
                 },
                 {
-                    themeName: 'Mental Health',                   
+                    themeName: 'Yoga for Physical fitness',                   
                     description: 'Check out these sets of aasans',
                     open: false ,
                     id: 2
                 },
                 {
-                    themeName: 'Mental Health',                   
+                    themeName: 'Yoga for Digestive System',                   
                     description: 'Check out these sets of aasans',
                     open: false ,
                     id: 3

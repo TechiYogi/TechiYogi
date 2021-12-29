@@ -7,6 +7,7 @@ import { faPlayCircle, faPauseCircle } from "@fortawesome/free-solid-svg-icons";
 import Model from "./Model/Model";
 import PoseDemonstration from "./PoseDemonstration";
 import EndSessionModal from "./EndSessionModal";
+import ShowReport from "./../Report/ShowReport";
 
 export class ViewSession extends Component {
   constructor(props) {
@@ -39,6 +40,7 @@ export class ViewSession extends Component {
       },
     };
 
+    this.childRefEndSession = React.createRef();
     this.nextPose = this.nextPose.bind(this);
     this.shouldRestartTimer = this.shouldRestartTimer.bind(this);
     this.timerchildRef = React.createRef();
@@ -167,8 +169,20 @@ export class ViewSession extends Component {
       });
 
       return [true, 3000];
-    } else {
-      console.log("Session Completed");
+    } else 
+    {
+      //idhr krege.. kaand
+      alert("Session Completed, please click on End Sessio Button");
+      this.childRefEndSession.current.handleEnd();
+
+      // let report = this.state.reportData;
+
+      //   for (let rep in report) {
+      //     report[rep] = JSON.stringify(report[rep])
+      //   }
+  
+      // <ShowReport report={report} />
+
     }
     // {this.timerchildRef.current.Timer(Schedule[this.state.currentID-1].yoga_time)}
   };
@@ -275,11 +289,13 @@ export class ViewSession extends Component {
           <div style={{ margin: "5%" }}>
             <PoseDemonstration
               poseName={Schedule[this.state.currentID - 1].yoga_name}
+              gif={Schedule[this.state.currentID - 1].gif}
             />
           </div>
         </div>
         <div style={{ textAlign: "right", marginTop: "-2%" }}>
           <EndSessionModal
+            ref = {this.childRefEndSession}
             report={this.state.reportData}
             changeTimerState={this.changeTimerState}
           />
